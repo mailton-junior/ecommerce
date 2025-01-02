@@ -13,7 +13,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/products")
-public class ProductController  {
+public class ProductController {
 
     @Autowired
     private ProductService service;
@@ -21,7 +21,6 @@ public class ProductController  {
     @GetMapping(value = "/{id}")
     private ResponseEntity<ProductDTO> findByid(@PathVariable Long id) {
         ProductDTO dto = service.findById(id);
-
         return ResponseEntity.ok(dto);
     }
 
@@ -37,7 +36,7 @@ public class ProductController  {
         dto = service.insert(dto);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
-                        .buildAndExpand(dto.getId()).toUri();
+                .buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
 
